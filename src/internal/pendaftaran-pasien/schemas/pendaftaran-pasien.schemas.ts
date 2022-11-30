@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { Address } from 'internal/schemas';
 
-export type PendaftaranPasienDocument = HydratedDocument<any>;
+export type PendaftaranPasienDocument = HydratedDocument<PendaftaranPasien>;
 
 @Schema()
 export class Telecom {
