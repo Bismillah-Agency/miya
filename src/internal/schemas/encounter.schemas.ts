@@ -2,6 +2,21 @@ import { Prop, Schema } from '@nestjs/mongoose';
 import { Code, Address } from './index';
 
 @Schema()
+export class LocationType {
+  @Prop()
+  description: string;
+
+  @Prop()
+  id: string;
+
+  @Prop()
+  locCategoryCode: Code;
+
+  @Prop()
+  locationTypeName: string;
+}
+
+@Schema()
 export class EncounterClassHistory {
   @Prop(Code)
   encounterClass: Code;
