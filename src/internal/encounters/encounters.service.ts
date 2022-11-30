@@ -14,7 +14,22 @@ export class EncountersService {
   ) {}
 
   create(createEncounterDto: CreateEncounterDto) {
-    const encounter = new this.encounterModel(createEncounterDto);
+    const encounter = new this.encounterModel({
+      ...createEncounterDto,
+      patient: {
+        ...createEncounterDto.patient,
+        education: {
+          eduLevelName: createEncounterDto.patient.education,
+        },
+        job: {
+          jobName: createEncounterDto.patient.job,
+        },
+      },
+      location: {
+        ...createEncounterDto.location,
+        locationId: createEncounterDto.locationId,
+      },
+    });
 
     return encounter.save();
   }

@@ -6,8 +6,8 @@ export class EncounterClass extends Code {}
 
 @Schema()
 export class EncounterClassHistory {
-  @Prop([EncounterClass])
-  encounterClass: EncounterClass;
+  @Prop(Code)
+  encounterClass: Code;
 
   @Prop()
   id: number;
@@ -15,7 +15,7 @@ export class EncounterClassHistory {
 
 @Schema()
 export class EncounterStatusHistories {
-  @Prop([Code])
+  @Prop(Code)
   encounterStatus: Code;
 
   @Prop()
@@ -84,7 +84,7 @@ export class Telecom {
 
 @Schema()
 export class Location {
-  @Prop([Address])
+  @Prop(Address)
   address: Address;
 
   @Prop()
@@ -111,8 +111,11 @@ export class Location {
   @Prop()
   locationStatus: string;
 
-  @Prop([Code])
-  locationType: Code;
+  @Prop()
+  locationType: string;
+
+  @Prop()
+  parent: string;
 
   @Prop()
   operationalStatus: string;
@@ -123,13 +126,13 @@ export class Location {
   @Prop()
   resId: string;
 
-  @Prop([Telecom])
+  @Prop(Telecom)
   telecom: Telecom;
 }
 
 @Schema()
 export class Contact {
-  @Prop([Address])
+  @Prop(Address)
   address: Address;
   @Prop()
   contactName: string;
@@ -137,7 +140,7 @@ export class Contact {
   gender: string;
   @Prop()
   relationship: string;
-  @Prop([Telecom])
+  @Prop(Telecom)
   telecom: Telecom;
 }
 
@@ -151,9 +154,6 @@ export class Education {
 
   @Prop()
   id: string;
-
-  @Prop()
-  code: string;
 }
 
 @Schema()
@@ -171,7 +171,7 @@ export class Job {
 @Schema()
 export class Patient {
   @Prop([Address])
-  addressDets: Address[];
+  addressDets: Address;
 
   @Prop()
   babyName: string;
@@ -182,10 +182,10 @@ export class Patient {
   @Prop()
   birthPlace: string;
 
-  @Prop([Contact])
+  @Prop(Contact)
   contact: Contact;
 
-  @Prop([Education])
+  @Prop(Education)
   education: Education;
 
   @Prop()
@@ -200,7 +200,7 @@ export class Patient {
   @Prop()
   idType: string;
 
-  @Prop([Job])
+  @Prop(Job)
   job: Job;
 
   @Prop()
@@ -212,17 +212,17 @@ export class Patient {
   @Prop()
   motherName: string;
 
-  @Prop([Code])
-  religion: [Code];
+  @Prop()
+  religion: string;
 
-  @Prop([Telecom])
+  @Prop(Telecom)
   telecom: Telecom;
 }
 
 @Schema()
 export class Practitioner {
   @Prop([Address])
-  addressDets: Address[];
+  addressDets: Address;
 
   @Prop()
   birthDate: string;
@@ -237,7 +237,7 @@ export class Practitioner {
   nik: string;
 
   @Prop([PracticeSchedule])
-  practiceSchedules: PracticeSchedule[];
+  practiceSchedules: PracticeSchedule;
 
   //   practitionerId	string
   // practitionerSpecialty	string
@@ -255,7 +255,7 @@ export class Practitioner {
   @Prop()
   resId: string;
 
-  @Prop([Telecom])
+  @Prop(Telecom)
   telecom: Telecom;
 }
 
@@ -285,22 +285,22 @@ export class Encounter {
   @Prop()
   id: string;
 
-  @Prop([Location])
+  @Prop(Location)
   location: Location;
 
   @Prop([Code])
   participantType: Code;
 
-  @Prop([Patient])
+  @Prop(Patient)
   patient: Patient;
 
   @Prop()
   paymentAccountNumber: string;
 
-  @Prop([Code])
-  paymentMethodCode: Code;
+  @Prop()
+  paymentMethodCode: string;
 
-  @Prop([Practitioner])
+  @Prop(Practitioner)
   practitioner: Practitioner;
 
   @Prop()

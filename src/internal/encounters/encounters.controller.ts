@@ -8,6 +8,7 @@ import {
   Delete,
   ValidationPipe,
   UsePipes,
+  Logger,
 } from '@nestjs/common';
 import { EncountersService } from './encounters.service';
 import { CreateEncounterDto } from './dto/create-encounter.dto';
@@ -15,11 +16,15 @@ import { UpdateEncounterDto } from './dto/update-encounter.dto';
 
 @Controller('api/miya/encounters')
 export class EncountersController {
+  private readonly logger = new Logger(EncountersController.name);
   constructor(private readonly encountersService: EncountersService) {}
 
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
   create(@Body() createEncounterDto: CreateEncounterDto) {
+    this.logger.log(
+      'createEncounterDto: ' + JSON.stringify(createEncounterDto),
+    );
     return this.encountersService.create(createEncounterDto);
   }
 
