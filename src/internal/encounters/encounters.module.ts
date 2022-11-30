@@ -17,7 +17,7 @@ import { HttpModule } from '@nestjs/axios';
     ]),
     HttpModule.registerAsync({
       useFactory: () => ({
-        baseURL: 'http://localhost:3000',
+        baseURL: 'http://api.kemedik.com/api/kemedis',
         timeout: 5000,
         maxRedirects: 5,
       }),

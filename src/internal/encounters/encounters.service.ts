@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Encounter } from 'internal/schemas';
+import { Encounter, Location } from 'internal/schemas';
 import { Model } from 'mongoose';
 import { CreateEncounterDto } from './dto/create-encounter.dto';
 import { UpdateEncounterDto } from './dto/update-encounter.dto';
 import { EncounterrDocument } from './schemas/encounter.schemas';
+import { AxiosResponse } from 'axios';
+import { HttpService } from '@nestjs/axios';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class EncountersService {
@@ -48,5 +51,24 @@ export class EncountersService {
 
   remove(id: number) {
     return `This action removes a #${id} encounter`;
+  }
+}
+
+@Injectable()
+export class LocationService {
+  constructor(private readonly httpService: HttpService) {}
+
+  async findAll(): Promise<Location[]> {
+    return await this.httpService
+      .get('/locations')
+      .toPromise()
+      .then((response) => response.data);
+  }
+
+  async findByLocationId(locationId: number): Promise<Location> {
+    return await this.httpService
+      .get(`/locations/${locationId}`)
+      .toPromise()
+      .then((response) => response.data);
   }
 }
