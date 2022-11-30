@@ -4,7 +4,7 @@ import { Encounter } from 'internal/schemas';
 import { Model } from 'mongoose';
 import { CreateEncounterDto } from './dto/create-encounter.dto';
 import { UpdateEncounterDto } from './dto/update-encounter.dto';
-import { Encounterr, EncounterrDocument } from './schemas/encounter.schemas';
+import { EncounterrDocument } from './schemas/encounter.schemas';
 
 @Injectable()
 export class EncountersService {
@@ -34,8 +34,8 @@ export class EncountersService {
     return encounter.save();
   }
 
-  findAll() {
-    return `This action returns all encounters`;
+  async findAll() {
+    return await this.encounterModel.find().exec();
   }
 
   findOne(id: number) {

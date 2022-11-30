@@ -393,6 +393,8 @@ export class Practitioner {
 
 @Schema()
 export class Encounter {
+  @Prop()
+  name: string;
   @Prop({
     default: null,
   })

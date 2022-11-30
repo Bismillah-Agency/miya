@@ -29,8 +29,9 @@ export class EncountersController {
   }
 
   @Get()
-  findAll() {
-    return this.encountersService.findAll();
+  async findAll() {
+    const encounters = await this.encountersService.findAll();
+    return encounters;
   }
 
   @Get(':id')
