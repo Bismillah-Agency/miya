@@ -151,6 +151,9 @@ export class Education {
 
   @Prop()
   id: string;
+
+  @Prop()
+  code: string;
 }
 
 @Schema()

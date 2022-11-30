@@ -1,11 +1,22 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Encounter } from 'internal/schemas';
+import { Model } from 'mongoose';
 import { CreateEncounterDto } from './dto/create-encounter.dto';
 import { UpdateEncounterDto } from './dto/update-encounter.dto';
+import { Encounterr, EncounterrDocument } from './schemas/encounter.schemas';
 
 @Injectable()
 export class EncountersService {
+  constructor(
+    @InjectModel(Encounter.name)
+    private encounterModel: Model<EncounterrDocument>,
+  ) {}
+
   create(createEncounterDto: CreateEncounterDto) {
-    return 'This action adds a new encounter';
+    const encounter = new this.encounterModel(createEncounterDto);
+
+    return encounter.save();
   }
 
   findAll() {

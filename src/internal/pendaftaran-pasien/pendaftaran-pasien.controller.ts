@@ -11,7 +11,7 @@ import { PendaftaranPasienService } from './pendaftaran-pasien.service';
 import { CreatePendaftaranPasienDto } from './dto/create-pendaftaran-pasien.dto';
 import { UpdatePendaftaranPasienDto } from './dto/update-pendaftaran-pasien.dto';
 
-@Controller('api/kemedis/encounters')
+@Controller('api/miya/pendaftaran-pasien')
 export class PendaftaranPasienController {
   constructor(
     private readonly pendaftaranPasienService: PendaftaranPasienService,
