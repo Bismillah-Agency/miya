@@ -2,14 +2,13 @@ import { Prop, Schema } from '@nestjs/mongoose';
 import { Code, Address } from './index';
 
 @Schema()
-export class EncounterClass extends Code {}
-
-@Schema()
 export class EncounterClassHistory {
   @Prop(Code)
   encounterClass: Code;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   id: number;
 }
 
@@ -18,67 +17,105 @@ export class EncounterStatusHistories {
   @Prop(Code)
   encounterStatus: Code;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   id: number;
 }
 
 @Schema()
 export class HoursOfOperation {
-  @Prop()
+  @Prop({
+    default: null,
+  })
   allDay: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   closingTime: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   daysOfWeek: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   openingTime: string;
 }
 
 @Schema()
 export class PracticeSchedule {
-  @Prop()
+  @Prop({
+    default: null,
+  })
   allDay: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   closingTime: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   daysOfWeek: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   openingTime: string;
 }
 
 @Schema()
 export class Position {
-  @Prop()
+  @Prop({
+    default: null,
+  })
   altitude: number;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   latitude: number;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   longitude: number;
 }
 
 @Schema()
 export class Telecom {
-  @Prop()
+  @Prop({
+    default: null,
+  })
   email: string;
-  @Prop()
+  @Prop({
+    default: null,
+  })
   fax: string;
-  @Prop()
+  @Prop({
+    default: null,
+  })
   other: string;
-  @Prop()
+  @Prop({
+    default: null,
+  })
   pager: string;
-  @Prop()
+  @Prop({
+    default: null,
+  })
   phone: string;
-  @Prop()
+  @Prop({
+    default: null,
+  })
   sms: string;
-  @Prop()
+  @Prop({
+    default: null,
+  })
   url: string;
 }
 
@@ -87,43 +124,67 @@ export class Location {
   @Prop(Address)
   address: Address;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   availabilityExceptions: string;
 
   @Prop([HoursOfOperation])
   hoursOfOperations: HoursOfOperation;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   locationAlias: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   locationDescription: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   locationId: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   locationMode: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   locationName: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   locationStatus: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   locationType: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   parent: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   operationalStatus: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   physicalTypeCode: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   resId: string;
 
   @Prop(Telecom)
@@ -134,11 +195,17 @@ export class Location {
 export class Contact {
   @Prop(Address)
   address: Address;
-  @Prop()
+  @Prop({
+    default: null,
+  })
   contactName: string;
-  @Prop()
+  @Prop({
+    default: null,
+  })
   gender: string;
-  @Prop()
+  @Prop({
+    default: null,
+  })
   relationship: string;
   @Prop(Telecom)
   telecom: Telecom;
@@ -146,25 +213,37 @@ export class Contact {
 
 @Schema()
 export class Education {
-  @Prop()
+  @Prop({
+    default: null,
+  })
   description: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   eduLevelName: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   id: string;
 }
 
 @Schema()
 export class Job {
-  @Prop()
+  @Prop({
+    default: null,
+  })
   description: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   id: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   jobName: string;
 }
 
@@ -173,13 +252,19 @@ export class Patient {
   @Prop([Address])
   addressDets: Address;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   babyName: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   birthDate: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   birthPlace: string;
 
   @Prop(Contact)
@@ -188,31 +273,47 @@ export class Patient {
   @Prop(Education)
   education: Education;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   firstName: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   gender: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   idNumber: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   idType: string;
 
   @Prop(Job)
   job: Job;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   lastName: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   maritalStatus: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   motherName: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   religion: string;
 
   @Prop(Telecom)
@@ -224,16 +325,24 @@ export class Practitioner {
   @Prop([Address])
   addressDets: Address;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   birthDate: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   gender: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   name: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   nik: string;
 
   @Prop([PracticeSchedule])
@@ -243,16 +352,24 @@ export class Practitioner {
   // practitionerSpecialty	string
   // practitionerTypeCode	string
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   practitionerId: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   practitionerSpecialty: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   practitionerTypeCode: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   resId: string;
 
   @Prop(Telecom)
@@ -261,7 +378,9 @@ export class Practitioner {
 
 @Schema()
 export class Encounter {
-  @Prop()
+  @Prop({
+    default: null,
+  })
   encounterCLass: Code;
 
   @Prop([EncounterClassHistory])
@@ -276,13 +395,19 @@ export class Encounter {
   @Prop([Code])
   encounterType: Code;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   escortName: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   escortPhoneNumber: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   id: string;
 
   @Prop(Location)
@@ -294,19 +419,27 @@ export class Encounter {
   @Prop(Patient)
   patient: Patient;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   paymentAccountNumber: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   paymentMethodCode: string;
 
   @Prop(Practitioner)
   practitioner: Practitioner;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   queueNo: string;
 
-  @Prop()
+  @Prop({
+    default: null,
+  })
   resId: string;
 
   @Prop([Code])
