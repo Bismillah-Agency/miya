@@ -11,7 +11,7 @@ import { PendaftaranPasienService } from './pendaftaran-pasien.service';
 import { CreatePendaftaranPasienDto } from './dto/create-pendaftaran-pasien.dto';
 import { UpdatePendaftaranPasienDto } from './dto/update-pendaftaran-pasien.dto';
 
-@Controller('/api/pendaftaran-pasien')
+@Controller('api/kemedis/encounters')
 export class PendaftaranPasienController {
   constructor(
     private readonly pendaftaranPasienService: PendaftaranPasienService,
@@ -19,6 +19,7 @@ export class PendaftaranPasienController {
 
   @Post()
   create(@Body() createPendaftaranPasienDto: CreatePendaftaranPasienDto) {
+    console.log('createPendaftaranPasienDto', createPendaftaranPasienDto);
     return this.pendaftaranPasienService.create(createPendaftaranPasienDto);
   }
 

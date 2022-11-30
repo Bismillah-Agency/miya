@@ -1,33 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
+import { Address } from 'internal/schemas';
 
 export type PendaftaranPasienDocument = HydratedDocument<any>;
 
-@Schema({ _id: false })
-export class Address {
-  @Prop()
-  addressLine: string;
-  @Prop()
-  addressType: string;
-  @Prop()
-  cityId: string;
-  @Prop()
-  countryId: string;
-  @Prop()
-  districtId: string;
-  @Prop()
-  postalCode: string;
-  @Prop()
-  provinceId: string;
-  @Prop()
-  rt: string;
-  @Prop()
-  rw: string;
-  @Prop()
-  subDistrictId: string;
-}
-
-@Schema({ _id: false })
+@Schema()
 export class Telecom {
   @Prop()
   email: string;
