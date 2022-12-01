@@ -5,6 +5,7 @@ import {
 } from '@nestjs/platform-fastify';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -13,6 +14,18 @@ async function bootstrap() {
       logger: true,
     }),
   );
+
+  const options = new DocumentBuilder()
+    .setTitle('Kemedis API')
+    .setDescription('Kemdis API')
+    .setVersion('1.0')
+    .addTag('KEMEDIS')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, options);
+
+  SwaggerModule.setup('swagger', app, document);
+
   app.enableCors();
   app.useGlobalPipes(
     new ValidationPipe({

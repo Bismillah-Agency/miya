@@ -10,16 +10,25 @@ import {
   UsePipes,
   Logger,
 } from '@nestjs/common';
-import { EncountersService } from './encounters.service';
+import { EncountersService, LocationService } from './encounters.service';
 import { CreateEncounterDto } from './dto/create-encounter.dto';
 import { UpdateEncounterDto } from './dto/update-encounter.dto';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
-@Controller('api/miya/encounters')
+@ApiTags('api/kemedis/encounters')
+@Controller('api/kemedis/encounters')
 export class EncountersController {
   private readonly logger = new Logger(EncountersController.name);
-  constructor(private readonly encountersService: EncountersService) {}
+  constructor(
+    private readonly encountersService: EncountersService,
+    private readonly locationService: LocationService,
+  ) {}
+
+  // constructor(private readonly LocationService: LocationService) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create Encounter' })
+  @ApiResponse({ status: 200, description: 'Create Encounter' })
   @UsePipes(new ValidationPipe({ transform: true }))
   create(@Body() createEncounterDto: CreateEncounterDto) {
     this.logger.log(
@@ -36,9 +45,14 @@ export class EncountersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.encountersService.findOne(+id);
+    return this.encountersService.findOne(id);
   }
 
+  @Get('locations')
+  async getLocation() {
+    const location = await this.locationService.findAll();
+    return location;
+  }
   @Patch(':id')
   update(
     @Param('id') id: string,

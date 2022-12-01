@@ -1,5 +1,6 @@
 import { Prop, Schema } from '@nestjs/mongoose';
 import { Code, Address } from './index';
+import { v4 as uuidv4 } from 'uuid';
 
 @Schema()
 export class LocationType {
@@ -263,6 +264,62 @@ export class Job {
 }
 
 @Schema()
+export class Practitioner {
+  @Prop([Address])
+  addressDets: Address;
+
+  @Prop({
+    default: null,
+  })
+  birthDate: string;
+
+  @Prop({
+    default: null,
+  })
+  gender: string;
+
+  @Prop({
+    default: null,
+  })
+  name: string;
+
+  @Prop({
+    default: null,
+  })
+  nik: string;
+
+  @Prop([PracticeSchedule])
+  practiceSchedules: PracticeSchedule;
+
+  //   practitionerId	string
+  // practitionerSpecialty	string
+  // practitionerTypeCode	string
+
+  @Prop({
+    default: null,
+  })
+  practitionerId: string;
+
+  @Prop({
+    default: null,
+  })
+  practitionerSpecialty: string;
+
+  @Prop({
+    default: null,
+  })
+  practitionerTypeCode: string;
+
+  @Prop({
+    default: null,
+  })
+  resId: string;
+
+  @Prop(Telecom)
+  telecom: Telecom;
+}
+
+@Schema()
 export class Patient {
   @Prop([Address])
   addressDets: Address;
@@ -333,63 +390,17 @@ export class Patient {
 
   @Prop(Telecom)
   telecom: Telecom;
+
+  @Prop(Practitioner)
+  practitioner: Practitioner;
+
+  @Prop(Location)
+  location: Location;
 }
 
-@Schema()
-export class Practitioner {
-  @Prop([Address])
-  addressDets: Address;
-
-  @Prop({
-    default: null,
-  })
-  birthDate: string;
-
-  @Prop({
-    default: null,
-  })
-  gender: string;
-
-  @Prop({
-    default: null,
-  })
-  name: string;
-
-  @Prop({
-    default: null,
-  })
-  nik: string;
-
-  @Prop([PracticeSchedule])
-  practiceSchedules: PracticeSchedule;
-
-  //   practitionerId	string
-  // practitionerSpecialty	string
-  // practitionerTypeCode	string
-
-  @Prop({
-    default: null,
-  })
-  practitionerId: string;
-
-  @Prop({
-    default: null,
-  })
-  practitionerSpecialty: string;
-
-  @Prop({
-    default: null,
-  })
-  practitionerTypeCode: string;
-
-  @Prop({
-    default: null,
-  })
-  resId: string;
-
-  @Prop(Telecom)
-  telecom: Telecom;
-}
+const generateEncounterId = () => {
+  return `ENC-${uuidv4()}`;
+};
 
 @Schema()
 export class Encounter {
@@ -399,6 +410,11 @@ export class Encounter {
     default: null,
   })
   encounterCLass: Code;
+
+  @Prop({
+    default: generateEncounterId(),
+  })
+  encounterId: string;
 
   @Prop([EncounterClassHistory])
   encounterClassHistories: EncounterClassHistory[];
@@ -441,10 +457,8 @@ export class Encounter {
   })
   paymentAccountNumber: string;
 
-  @Prop({
-    default: null,
-  })
-  paymentMethodCode: string;
+  @Prop(Code)
+  paymentMethodCode: Code;
 
   @Prop(Practitioner)
   practitioner: Practitioner;

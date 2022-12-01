@@ -6,12 +6,20 @@ class PatientInput extends OmitType(Patient, ['education', 'job']) {
   job: string;
 }
 
+class PaymentInput extends OmitType(Encounter, ['paymentMethodCode']) {
+  paymentMethodCode: string;
+}
+
 class AdditionalEncoubterInput {
   locationId: string;
 }
 
-export class AddCreateEncounterDto extends OmitType(Encounter, ['patient']) {
+export class AddCreateEncounterDto extends OmitType(Encounter, [
+  'patient',
+  'paymentMethodCode',
+]) {
   patient: PatientInput;
+  paymentMethodCode: PaymentInput;
 }
 
 export class CreateEncounterDto extends IntersectionType(

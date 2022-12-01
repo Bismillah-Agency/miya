@@ -1,5 +1,9 @@
 import { Module } from '@nestjs/common';
-import { EncountersService } from './encounters.service';
+import {
+  EncountersService,
+  LocationService,
+  JobService,
+} from './encounters.service';
 import { EncountersController } from './encounters.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EncounterSchema } from './schemas/encounter.schemas';
@@ -7,7 +11,7 @@ import { HttpModule } from '@nestjs/axios';
 
 @Module({
   controllers: [EncountersController],
-  providers: [EncountersService],
+  providers: [EncountersService, LocationService, JobService],
   imports: [
     MongooseModule.forFeature([
       {
