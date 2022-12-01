@@ -1,5 +1,7 @@
 import { IntersectionType, OmitType } from '@nestjs/mapped-types';
 import { Encounter, Patient } from 'internal/schemas';
+import { ApiProperty } from '@nestjs/swagger';
+import { type } from 'os';
 
 class PatientInput extends OmitType(Patient, ['education', 'job']) {
   education: string;

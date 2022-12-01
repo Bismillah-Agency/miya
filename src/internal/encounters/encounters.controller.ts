@@ -27,8 +27,11 @@ export class EncountersController {
   // constructor(private readonly LocationService: LocationService) {}
 
   @Post()
-  @ApiOperation({ summary: 'Create Encounter' })
-  @ApiResponse({ status: 200, description: 'Create Encounter' })
+  @ApiOperation({ summary: 'Administrasi - Pendaftaran Pasien' })
+  @ApiResponse({
+    status: 200,
+    description: 'Berhasil Pendaftaran Pasien',
+  })
   @UsePipes(new ValidationPipe({ transform: true }))
   create(@Body() createEncounterDto: CreateEncounterDto) {
     this.logger.log(
